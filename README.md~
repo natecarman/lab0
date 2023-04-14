@@ -1,0 +1,26 @@
+## UID: 705769539
+
+(IMPORTANT: Only replace the above numbers with your true UID, do not modify spacing and newlines, otherwise your tarfile might not be created correctly)
+
+# A Kernel Seedling
+
+When insmoded into kernel the program loops through current running processes and prints the number
+to /proc/count
+
+## Building
+
+inputting "$make" will build the module through the Makefile
+
+## Running
+
+input "$sudo insmod proc_count.ko" to insert the module into the kernel
+
+## Cleaning Up
+
+input "$sudo rmmod proc_count" to remove the module from the kernel
+
+## Testing
+
+Report which kernel release version you tested your module on
+(hint: use `uname`, check for options with `man uname`).
+It should match release numbers as seen on <https://www.kernel.org/>.
