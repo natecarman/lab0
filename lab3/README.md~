@@ -1,0 +1,39 @@
+# Hash Hash Hash
+This lab is a test of proficiency with locking and making thread-safe programs, by adding thread locks to a
+hash table implementation.
+
+## Building
+```shell
+$make
+```
+
+## Running
+```shell
+$ ./hash-table-tester -t (# of Cores to Run On) -s (# of iterations)
+```
+
+## First Implementation
+In the `hash_table_v1_add_entry` function, I initialized a static pthread_mutex_t variable "mutex". Then I locked the
+mutex before the 
+
+### Performance
+```shell
+
+```
+
+This time version 1 is xxx
+
+## Second Implementation
+In the `hash_table_v2_add_entry` function, xxx
+
+### Performance
+```shell
+
+```
+
+This time the speed up is xxx
+
+## Cleaning up
+```shell
+
+```
