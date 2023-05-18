@@ -9,7 +9,10 @@ $make
 
 ## Running
 ```shell
-$ ./hash-table-tester -t (# of Cores to Run On) -s (# of iterations)
+ ./hash-table-tester -t 8 -s 50000
+Generation: 35,383 usec
+Hash table base: 963,518 usec
+  - 0 missing
 ```
 
 ## First Implementation
@@ -23,22 +26,36 @@ for errors
 
 ### Performance
 ```shell
-
+./hash-table-tester -t 8 -s 50000
+Generation: 35,383 usec
+Hash table base: 963,518 usec
+  - 0 missing
+Hash table v1: 3,370,583 usec
+  - 0 missing
 ```
 
-This time version 1 is xxx
+This time version 1 is slower than the base version because only one thread can add to the hash table at a time
+due to the universal mutex lock
 
 ## Second Implementation
-In the `hash_table_v2_add_entry` function, xxx
+In the `hash_table_v2_add_entry` function, I made a pthread_mutex_t "mutex" as a data member of the hash_table_entry
+and called each hash entry's specific mutex lock whenever that hash entry was being accessed. This way all other threads can add to the hash table as long as they are not trying to access the specific hash entry that one thread is already accessing. By having # table entries = # mutex, we ensure maximum efficiency along with thread safety
 
 ### Performance
 ```shell
-
+./hash-table-tester -t 8 -s 50000
+Generation: 35,383 usec
+Hash table base: 963,518 usec
+  - 0 missing
+Hash table v1: 3,370,583 usec
+  - 0 missing
+Hash table v2: 193,121 usec
+  - 0 missing
 ```
 
-This time the speed up is xxx
+This time the speed up is roughly 4 or 5 times faster than the base version, this is because all threads are changing the hash table at the same time unless they are trying to access the same hash entry. By having all threads modifying simultaneously, the program can finish much faster
 
 ## Cleaning up
 ```shell
-
+make clean
 ```
